@@ -8,6 +8,15 @@
         <servlet-name>wangzhihui</servlet-name><!-- give any name -->
         <servlet-class>com.dabing.week2.demo.HelloWorldServlet</servlet-class><!--package +name of servlet class -->
     </servlet>
+    <servlet>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <servlet-class>com.wangzhihui.week3.demo.LifeCycleServlet</servlet-class>
+    </servlet>
+    <!--automatic code-->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.wangzhihui.week3.demo.RegisterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>wangzhihui</servlet-name>
         <url-pattern>/hello</url-pattern><!-- url must start with / -->
@@ -15,4 +24,13 @@
     <!-- x=5, a=x so we can say a=5
     so /hello==com.dabing.week2.demo.HelloWorldServlet
     -->
+    <servlet-mapping>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <url-pattern>/life</url-pattern><!-- url must start with / -->
+    </servlet-mapping>
+    <!--/life == LifeCycleServlet == com.wangzhihui.week3.demo.LifeCycleServlet-->
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern><!-- write this url in action-->
+    </servlet-mapping>
 </web-app>
