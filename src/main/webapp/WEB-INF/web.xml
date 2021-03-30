@@ -17,6 +17,7 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.wangzhihui.week3.demo.RegisterServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>wangzhihui</servlet-name>
         <url-pattern>/hello</url-pattern><!-- url must start with / -->
@@ -33,4 +34,5 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern><!-- write this url in action-->
     </servlet-mapping>
+
 </web-app>
