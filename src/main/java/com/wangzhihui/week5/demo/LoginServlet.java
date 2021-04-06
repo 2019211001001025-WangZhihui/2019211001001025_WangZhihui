@@ -4,10 +4,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -19,8 +16,10 @@ public class LoginServlet extends HttpServlet {
         String password="wangzhihui0622";
         try { Class.forName(driver);
             dbConn = DriverManager.getConnection(url,username,password);
-        } catch (Exception e) {
-            System.out.println(e); } }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
