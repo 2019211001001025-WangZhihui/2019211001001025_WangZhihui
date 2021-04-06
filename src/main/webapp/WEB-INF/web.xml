@@ -18,6 +18,7 @@
         <servlet-class>com.wangzhihui.week3.demo.RegisterServlet</servlet-class>
     </servlet>
 
+
     <servlet-mapping>
         <servlet-name>wangzhihui</servlet-name>
         <url-pattern>/hello</url-pattern><!-- url must start with / -->

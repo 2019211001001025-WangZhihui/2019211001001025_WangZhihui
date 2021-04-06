@@ -7,11 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
+<h1>Login</h1>
+<%
+    if(!(request.getAttribute("massage")==null)){
+        out.print("<h3>"+request.getAttribute("massage")+"</h3>");
+    }
+%>
 <form method="post" action="login">
     <%= "Login" %><br/>
     Username<input type="text" name="username"><br/>
     Password<input type="password" name="password"><br/>
-    <input type="submit" value="login"/>
+    <input type="submit" value="Submit"/>
 
 </form>
 <%@include file="footer.jsp"%>
