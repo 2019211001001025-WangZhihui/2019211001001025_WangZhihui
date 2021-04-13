@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 //automatic -new --> servlet
-@WebServlet(name="RegisterServlet",value = "/register")
+@WebServlet(urlPatterns = {"/register"},loadOnStartup = 1)
 public class RegisterServlet extends HttpServlet {
     Connection con = null;
     @Override
