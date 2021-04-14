@@ -53,7 +53,8 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("birthDate",rs.getString("birthdate"));
                 //forward to user info jsp
                 try {
-                    request.getRequestDispatcher("userList.jsp").forward(request,response);
+
+                    request.getRequestDispatcher("userInfo.jsp").forward(request,response);
                 } catch (ServletException e) {
                     e.printStackTrace();
                 }
@@ -61,7 +62,7 @@ public class LoginServlet extends HttpServlet {
                 //out.print("Username or password Error!!!");
                 request.setAttribute("massage","Username or Password Error!!!");
                 try {
-                    request.getRequestDispatcher("Login.jsp").forward(request,response);
+                    request.getRequestDispatcher("login.jsp").forward(request,response);
                 } catch (ServletException e) {
                     e.printStackTrace();
                 }
