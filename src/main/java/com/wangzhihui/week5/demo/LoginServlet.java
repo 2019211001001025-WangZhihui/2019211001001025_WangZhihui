@@ -1,11 +1,17 @@
 package com.wangzhihui.week5.demo;
 
+import com.wangzhihui.Dao.UserDao;
+import com.wangzhihui.model.User;
+
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -28,7 +34,15 @@ public class LoginServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        doPost(request, response);
+
+        //when user click login menu- method is get
+
+        try {
+            request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
     }
     @Override
 
@@ -37,9 +51,41 @@ public class LoginServlet extends HttpServlet {
         // TODO 3:GET REQUEST PARAMETER - USERNAME AND PASSWORD
         String username = request.getParameter("username");
         String password= request.getParameter("password");
+
+
+        //now move jdbc code in dao - MVC design
+        //write mvc code
+        //user model and dao
+        UserDao userDao=new UserDao();
+        try {
+            User user=userDao.findByUsernamePassword(con,username,password);//this methods use for login
+            if (user!=null){
+                //valid
+                //set user into request
+                request.setAttribute("user",user);//get user info in jsp
+                try {
+                    request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                //invalid
+                request.setAttribute("massage","Username or Password Error!!!");
+                try {
+                    request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                }
+            }
+            //forward - JSP
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
         //TODO 4: VALIDATE USER -SELECT * FROM USERTABLE WHERE USERNAME='XXX'
         // AND PASSWORD='YYY'
-        String sql="select username,password from usertable where username='"+username+"' and password='"+password+"'";
+        /*String sql="select username,password from usertable where username='"+username+"' and password='"+password+"'";
         try{
             ResultSet rs= con.createStatement().executeQuery(sql);
             if(rs.next()){
@@ -69,7 +115,7 @@ public class LoginServlet extends HttpServlet {
             }
         }catch(SQLException throwables){
                     throwables.printStackTrace();
-        }
+        }*/
 
         /*init();
         try {
