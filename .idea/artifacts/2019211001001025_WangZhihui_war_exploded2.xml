@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="2019211001001025_WangZhihui:war exploded2">
+    <output-path>$PROJECT_DIR$/out/artifacts/2019211001001025_WangZhihui_war_exploded2</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="2019211001001025_WangZhihui" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:8.2.1.jre8" />
+          <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.8" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="2019211001001025_WangZhihui/web/Web" />
+    </root>
+  </artifact>
+</component>

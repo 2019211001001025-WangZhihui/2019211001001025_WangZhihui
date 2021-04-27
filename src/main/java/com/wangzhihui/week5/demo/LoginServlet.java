@@ -5,9 +5,7 @@ import com.wangzhihui.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -55,14 +53,55 @@ public class LoginServlet extends HttpServlet {
 
         //now move jdbc code in dao - MVC design
         //write mvc code
-        //user model and dao
-        UserDao userDao=new UserDao();
+        //user model and
         try {
+        UserDao userDao=new UserDao();
             User user=userDao.findByUsernamePassword(con,username,password);//this methods use for login
             if (user!=null){
                 //valid
+                //week 8 code - demo #1- use cookie for session
+                //create cookie
+                //step 1: create an object of cookie class
+                Cookie c=new Cookie("sessionid",""+user.getID());//sessionid = user- id
+                //step 2: set age of cookie
+                c.setMaxAge(10*60);//in sec- 10 min - 7 days - 60*60*24*7
+                //step 3: add cookie into response
+                response.addCookie(c);
+
+                //add code for remember me
+                String rememberMe=request.getParameter("rememberMe");//1=checked, null if checked
+                if(rememberMe!=null && rememberMe.equals("1")){
+                    //want to remember me
+                    //create 3 cookies
+                    Cookie usernameCookies=new Cookie("cUsername",user.getUsername());
+                    Cookie passwordCookies=new Cookie("cPassword",user.getPassword());
+                    Cookie rememberMeCookies=new Cookie("cRememberMe",rememberMe);
+
+                    //set age of cookies
+                    usernameCookies.setMaxAge(5);//5 sec- test --- 15 days = 60*60*24*15
+                    passwordCookies.setMaxAge(5);
+                    rememberMeCookies.setMaxAge(5);
+                    //add 3 cookies into response
+                    response.addCookie(usernameCookies);
+                    response.addCookie(passwordCookies);
+                    response.addCookie(rememberMeCookies);
+
+                }
+
+
+
+                //create a session
+                HttpSession session=request.getSession();//create a new session if session doesnot exist - otherwise return existing session
+                //check session id
+                System.out.println("session id-->"+session.getId());//session id
+                //set time for session
+                session.setMaxInactiveInterval(10);//for 5 10 section if request not come in - tomcat kill session -set 60*60==1 h
+
+
                 //set user into request
-                request.setAttribute("user",user);//get user info in jsp
+                //week 8 0- change request(one page) to session - so we can get session attribute in many jsp page - login.jsp and header.jsp
+
+                session.setAttribute("user",user);//get user info in session
                 try {
                     request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
                 } catch (ServletException e) {
@@ -81,6 +120,12 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+
+
+
+
+
 
 
         //TODO 4: VALIDATE USER -SELECT * FROM USERTABLE WHERE USERNAME='XXX'
