@@ -13,10 +13,10 @@
         <servlet-class>com.wangzhihui.week3.demo.LifeCycleServlet</servlet-class>
     </servlet>
     <!--automatic code-->
-    <servlet>
+<!--    <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.wangzhihui.week3.demo.RegisterServlet</servlet-class>
-    </servlet>
+    </servlet>-->
 
 
     <servlet-mapping>
@@ -31,10 +31,10 @@
         <url-pattern>/life</url-pattern><!--&lt;!&ndash; url must start with / &ndash;&gt;-->
     </servlet-mapping>
     <!--/life == LifeCycleServlet == com.wangzhihui.week3.demo.LifeCycleServlet-->
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/register</url-pattern><!--&lt;!&ndash; write this url in action&ndash;&gt;-->
-    </servlet-mapping>
+        <url-pattern>/register</url-pattern>&lt;!&ndash;&lt;!&ndash; write this url in action&ndash;&gt;&ndash;&gt;
+    </servlet-mapping>-->
 
 
     <context-param>
@@ -51,7 +51,7 @@
     </context-param>
     <context-param>
         <param-name>password</param-name>
-        <param-value>wzh123456</param-value>
+        <param-value>wangzhihui0622</param-value>
     </context-param>
     
     <welcome-file-list>

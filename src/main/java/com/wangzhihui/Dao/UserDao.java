@@ -34,6 +34,10 @@ public class UserDao  implements  IUserDao{
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         String sql = "update usertable set name = ?,password = ?, email = ?, gender = ?, birth = ? where id = ?";
+        //TODO 5.1 - write updUpdate sql where id =?
+        //TODO 5.2 - create prepared ststement
+        //TODO 5.3 - executeUpdate()
+        //Todo 5.4 return int value
         return sw.update(con,sql,new Object[]{user.getUsername(),user.getPassword(),user.getEmail(),user.getGender(),user.getBirthdate(),user.getID()});
     }
 

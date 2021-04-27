@@ -1,6 +1,5 @@
 package com.wangzhihui.week3.demo;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 //automatic -new --> servlet
 @WebServlet(urlPatterns = {"/register"},loadOnStartup = 1)
@@ -35,6 +36,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
@@ -79,7 +81,9 @@ public class RegisterServlet extends HttpServlet {
             //request.getRequestDispatcher("userList.jsp").forward(request,response);
             //no more here
             //System.out.println("i am in RegisterServlet-->doPost()--> after forward()");
-            response.sendRedirect("login.jsp");
+
+
+            response.sendRedirect("login");
         }catch(SQLException e){
             e.printStackTrace();
         }
