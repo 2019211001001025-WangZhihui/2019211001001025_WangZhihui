@@ -55,7 +55,6 @@ public  class ProductDao implements  IProductDao{
         }
         return product;
 }
-
     @Override
     public List<Product> findByCategoryId(int categoryId, Connection con) {
         List<Product> list=new ArrayList<Product>();
