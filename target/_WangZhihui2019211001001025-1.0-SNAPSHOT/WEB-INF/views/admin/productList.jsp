@@ -1,3 +1,5 @@
+<%@ page import="com.wangzhihui.model.Product" %>
+<%@ page import="com.wangzhihui.model.Category" %>
 <%@include file="../header.jsp" %>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -48,7 +50,7 @@
 
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="" 
+								<a href=""><img src="<%=basePath%>getImg?id=${p.productId}"
 								style="border: 1px solid #F7F7F0; height: 100px;width: 80px;"/></a>
 							</td>
 							<td class="cart_description">
@@ -58,8 +60,14 @@
 								<td class="cart_price">
 								<p>${p.price}</p>
 							</td>
-						
-							<td class="cart_quantity">${p.CategoryID}</td>
+
+							<%
+								Product p=(Product)pageContext.findAttribute("p");
+								int pid=p.getProductId();
+								java.sql.Connection con=(java.sql.Connection)application.getAttribute("con");
+								String catName=Category.findByCategoryId(con,pid);
+							%>
+							<td class="cart_quantity"><%=catName%></td>
 							
 							<td class="cart_total">
 								<p class="cart_total_price"> ${p.productDescription}</p>

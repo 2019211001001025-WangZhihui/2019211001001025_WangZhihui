@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
     private Product product;
     private  int qunatity;
+    private int quantity;
 
     public  Item(){
         super();
@@ -22,8 +23,8 @@ public class Item implements Serializable {
         this.product = product;
     }
 
-    public int getQunatity() {
-        return qunatity;
+    public int getQuantity() {
+        return quantity;
     }
 
     public void setQunatity(int qunatity) {
@@ -36,5 +37,14 @@ public class Item implements Serializable {
                 "product=" + product +
                 ", qunatity=" + qunatity +
                 '}';
+    }
+
+
+    public int getQunatity() {
+        return qunatity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.qunatity = quantity;
     }
 }
